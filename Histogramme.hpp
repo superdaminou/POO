@@ -32,6 +32,7 @@ public:
     void ajoutFichier(Pharmacie med);
     ~Histogramme();
     void ajouterEffet(string effet);
+    void afficherUnEffet (string effet);
     void afficherHisto();
     void afficherEffet();
     void associerMedicament(string effet, string medoc);

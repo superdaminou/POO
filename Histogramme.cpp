@@ -105,6 +105,27 @@ void Histogramme::ajouterEffet(string effet){
     }
 }
 
+
+void Histogramme::afficherUnEffet (string effet)
+{
+    map<string,vector<string>>::iterator it;
+    for (map<string,vector<string>>::iterator it =histo.begin();
+         it!=histo.end();
+         it++)
+    {
+        if(it->first == effet)
+        {
+            cout<<effet<< " medicament : ";
+            for(vector<string>::iterator ip=it->second.begin();ip!=it->second.end();ip++)
+            {
+                cout<<*ip<<", ";
+            }
+        }
+        
+    }
+    
+}
+
 /********** Affichage de tout les effets de la base de données *********/
 void Histogramme::afficherEffet(){
     map<string,vector<string>>::iterator it;
