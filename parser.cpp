@@ -33,6 +33,152 @@ void usage(char* progname) {
     std::exit(EXIT_FAILURE);
 }
 
+
+bool read_choice( int & N,int bas, int haut )
+{
+    cout << "Entrez un chiffre entre "<<bas<<" et "<<haut<<" : " ;
+    while ( ! ( cin >> N ) || N < bas || N > haut )
+    {
+        if ( cin.eof() )
+        {
+            // ^D  (^Z sous windows); Fin du flux d'entree !
+            return false;
+        }
+        else if ( cin.fail() )
+        {
+            cout << "Saisie incorrecte, recommencez : ";
+            cin.clear();
+            cin.ignore( numeric_limits<streamsize>::max(), '\n' );
+        }
+        else
+        {
+            cout << "Le chiffre n'est pas entre "<<bas<<" et "<< haut<<" , recommencez : ";
+        }
+    }
+    return true; // succès
+}
+
+
+void afficheMenuPPl()
+{
+    cout<< "**********************************************************************"<<endl;
+    cout<< "*                                                                    *"<<endl;
+    cout<< "*                     Bienvenu dans la Pharmacie                     *"<<endl;
+    cout<< "*                                                                    *"<<endl;
+    cout<< "**********************************************************************"<<endl;
+    
+    cout<<endl;
+    
+    cout<< "**********************************************************************"<<endl;
+    cout<< "*               Que souhaitez vous faire ?                           *"<<endl;
+    cout<< "*                                                                    *"<<endl;
+    cout<< "*                   1) Afficher                                      *"<<endl;
+    cout<< "*                                                                    *"<<endl;
+    cout<< "*                   2) Faire une recherche                           *"<<endl;
+    cout<< "*                                                                    *"<<endl;
+    cout<< "*                   3) Ajouter un medicament                         *"<<endl;
+    cout<< "*                                                                    *"<<endl;
+    cout<< "*                   4) Sortir                                        *"<<endl;
+    cout<< "*                                                                    *"<<endl;
+    cout<< "**********************************************************************"<<endl;
+    cout<<endl;
+}
+
+void afficher(Histogramme histo)
+{
+    cout<< "**********************************************************************"<<endl;
+    cout<< "*               Que souhaitez vous faire ?                           *"<<endl;
+    cout<< "*                                                                    *"<<endl;
+    cout<< "*                   1) Afficher la pahrmacie                         *"<<endl;
+    cout<< "*                                                                    *"<<endl;
+    cout<< "*                   2) Afficher l'histogramme                        *"<<endl;
+    cout<< "*                                                                    *"<<endl;
+    cout<< "*                   3) Afficher les effets                           *"<<endl;
+    cout<< "*                                                                    *"<<endl;
+    cout<< "*                   4) Sortir                                        *"<<endl;
+    cout<< "*                                                                    *"<<endl;
+    cout<< "**********************************************************************"<<endl;
+    cout<<endl;
+    
+    int choix;
+    if ( read_choice( choix,1,4 ) )
+    {
+        cout << "Vous avez choisi : " << choix << '\n';
+    }
+        
+    
+    switch (choix)
+    {
+        case 1: {
+            cout << "1";
+            
+        }
+        case 2:
+        {
+            histo.afficherHisto();
+            cin.clear();
+            cin.ignore( numeric_limits<streamsize>::max(), '\n' );
+            afficher(histo);
+        }
+        case 3:
+        {
+            cout << "3";
+            
+        }
+        case 4:
+        {
+            cout << "4";
+            break;
+            // ici, ce n'est pas nécessaire, c'est la dernière instruction
+        }
+    }
+    
+    
+    
+
+}
+
+
+void play(Pharmacie pharma)
+{
+    Histogramme histo(pharma);
+    afficheMenuPPl();
+    
+    int choix;
+    if ( read_choice( choix,1,4 ) )
+    {
+        cout << "Vous avez choisi : " << choix << '\n';
+    }
+    
+    
+    switch (choix)
+    {
+        case 1: {
+            
+            afficher(histo);
+            
+        }
+        case 2:
+        {
+            cout <<"2";
+            
+        }
+        case 3:
+        {
+            cout << "3";
+            
+        }
+        case 4:
+        {
+            cout << "4";
+            // ici, ce n'est pas nécessaire, c'est la dernière instruction
+        }
+    }
+    
+    
+    
+}
+
 int main(int argc, char** argv){
     std::string inFilename; // le nom du fichier de médicaments
     
@@ -58,10 +204,9 @@ int main(int argc, char** argv){
             Pharmacie pharma(inFilename); // crée la pharmacie en faisant le parsing en même temps
             
             //insérez vous méthodes ici
-            Histogramme histo(pharma);
-            //histo.afficherHisto();
-            histo.afficherHisto();
-            histo.rechercheParMedicaments("Loratadine");
+           
+            //histo.rechercheParMedicaments("Loratadine");
+            play(pharma);
             
         }
         catch(const runtime_error& err)
