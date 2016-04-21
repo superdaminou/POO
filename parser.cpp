@@ -176,7 +176,7 @@ void play(Histogramme histo)
                     case 1:
                     {
                         
-                        
+                        histo.afficherPharma();
                         cin.clear();
                         cin.ignore( numeric_limits<streamsize>::max(), '\n' );
                         

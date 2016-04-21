@@ -17,6 +17,7 @@
 #include <map>
 #include "Pharmacie.hpp"
 #include <locale>
+#include <cstring>
 
 using namespace std;
 
@@ -35,6 +36,7 @@ public:
     
     void afficherUnEffet (string effet);
     void afficherHisto();
+    void afficherPharma();
     void afficherEffet();
     
     void associerMedicament(string effet, string medoc);

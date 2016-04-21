@@ -134,13 +134,13 @@ void Histogramme::afficherEffet(){
     }
 }
 
-/********** Affichage de tout l'histogramme **********/
-void Histogramme::afficherHisto(){
+/********** Affichage de toute la Pharma**********/
+void Histogramme::afficherPharma(){
     map<string,vector<string> >::iterator it;
     for(it=histo.begin();it!=histo.end();it++){
         cout<<"     effet : "<<it->first<<", ";
         for(int i=0;i<=25-it->first.size();i++){
-            cout<<"/";
+            cout<<".";
         }
         cout<<"medicaments associé : ";
         for(vector<string>::iterator ip=it->second.begin();ip!=it->second.end();ip++){
@@ -149,6 +149,30 @@ void Histogramme::afficherHisto(){
         cout<<endl;
     }
 }
+
+/********** Affichage de l'Histograme **********/
+
+void Histogramme::afficherHisto(){
+    map<string,vector<string> >::iterator it;
+    cout<<"nb apparition";
+    for(int i=0;i<=8;i++){
+        cout<<".";
+    }
+    cout<<"effet"<<endl;
+    for(it=histo.begin();it!=histo.end();it++){
+        for(int i=0;i<=it->second.size();i++){
+            cout<<"◙";
+        }
+        for(int i=0;i<=20-it->second.size();i++){
+            cout<<".";
+        }
+        cout<<it->first<<" ";
+        
+                cout<<endl;
+    }
+}
+
+
 /********** Associer un effet a un medicament **********/
 void Histogramme::associerMedicament(string effet,string medoc){
     map<string,vector<string> >::iterator it;
