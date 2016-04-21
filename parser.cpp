@@ -127,12 +127,11 @@ void rechercher()
 
 
 
-void play(Pharmacie pharma)
+void play(Histogramme histo)
 {
     bool i = true;
     int choix;
     string medicament;
-    Histogramme histo(pharma);
     
     afficheMenuPPl();
     
@@ -176,7 +175,7 @@ void play(Pharmacie pharma)
                         /******************************************/
                     case 1:
                     {
-                        pharma.afficherMap();
+                        
                         
                         cin.clear();
                         cin.ignore( numeric_limits<streamsize>::max(), '\n' );
@@ -197,6 +196,7 @@ void play(Pharmacie pharma)
                     case 2:
                     {
                         histo.afficherHisto();
+                        
                         cin.clear();
                         cin.ignore( numeric_limits<streamsize>::max(), '\n' );
                         
@@ -234,7 +234,7 @@ void play(Pharmacie pharma)
                     case 4:
                     {
                         i=false;
-                        play(pharma);
+                        play(histo);
                         break;
                     
                     }
@@ -330,7 +330,7 @@ void play(Pharmacie pharma)
                     case 4:
                     {
                         i=false;
-                        play(pharma);
+                        play(histo);
                         break;
                         
                     }
@@ -352,9 +352,52 @@ void play(Pharmacie pharma)
             
         case 3:
         {
-            cout << "3";
-            break;
+            string medicament;
+            vector<string> effetMedicament;
+            string effet;
+            int choix;
+            bool loop=true;
             
+            cout << "tapez le nom de votre medicament :"<<endl;
+            cin>>medicament;
+            
+            cin.clear();
+            cin.ignore( numeric_limits<streamsize>::max(), '\n' );
+            cout<<"ajouter un effet :"<<endl;
+            getline(cin,effet);
+            effetMedicament.push_back(effet);
+            
+            while(loop==true){
+                cout<<"voulez vous rajouter un effet ?"<<endl<<"1)Oui"<<endl<<"2)Non"<<endl;
+                
+                cin>>choix;
+                
+                switch (choix) {
+                    case 1:
+                        
+                        cin.clear();
+                        cin.ignore( numeric_limits<streamsize>::max(), '\n' );
+                        cout<<"rentrez l'effet a ajouter:"<<endl;
+                        
+                        getline(cin,effet);
+                        effetMedicament.push_back(effet);
+                        break;
+                        
+                    case 2:
+                        histo.ajouterMedicament(medicament, effetMedicament);
+                        loop=false;
+                        play(histo);
+                        break;
+                        
+                    default:
+                        break;
+                    
+            }
+            
+            
+            
+        }
+            break;
         }
             
             
@@ -406,7 +449,9 @@ int main(int argc, char** argv){
             Pharmacie pharma(inFilename); // crée la pharmacie en faisant le parsing en même temps
             
             //insérez vous méthodes ici
-            play(pharma);
+            
+            Histogramme histo(pharma);
+            play(histo);
             
         }
         catch(const runtime_error& err)

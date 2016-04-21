@@ -138,7 +138,11 @@ void Histogramme::afficherEffet(){
 void Histogramme::afficherHisto(){
     map<string,vector<string> >::iterator it;
     for(it=histo.begin();it!=histo.end();it++){
-        cout<<"effet :  "<<it->first<<", medicaments associé :        ";
+        cout<<"     effet : "<<it->first<<", ";
+        for(int i=0;i<=25-it->first.size();i++){
+            cout<<"/";
+        }
+        cout<<"medicaments associé : ";
         for(vector<string>::iterator ip=it->second.begin();ip!=it->second.end();ip++){
             cout<<*ip<<" ";
         }
