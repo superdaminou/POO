@@ -8,25 +8,25 @@
  ************************************/
 
 Histogramme::Histogramme(){
-    histo=*new map<string,vector<string>>;
+    histo=*new map<string,vector<string> >;
 }
 
 Histogramme::Histogramme(Pharmacie med)
 {
     //On recup la pharmacie
-    map<string,vector<string>> pharma = med.getMeds();
+    map<string,vector<string> > pharma = med.getMeds();
     
     
     //iterator pour l'hitogramme
     
-    for (map<string,vector<string>>::iterator iP=pharma.begin();iP != pharma.end();iP++)
+    for (map<string,vector<string> >::iterator iP=pharma.begin();iP != pharma.end();iP++)
     {
         
         for (vector <string>::iterator iPv = iP->second.begin();iPv != iP->second.end();iPv++)
         {
             
             //Pour chaque effet on compare avec histo pour savoir si il est deja présent
-            map<string,vector<string>>::iterator iF = histo.find(*iPv);
+            map<string,vector<string> >::iterator iF = histo.find(*iPv);
             if(iF == histo.end())
             {
                 //l'effet n'a pas été trouvé il est donc absent de l histo
@@ -63,19 +63,19 @@ Histogramme::~Histogramme(){
 
 /**********Permet de rajouter une nouvelle pharmacie dans l'histogramme afin**********/
 void Histogramme::ajoutFichier(Pharmacie med){
-    map<string,vector<string>> pharma = med.getMeds();
+    map<string,vector<string> > pharma = med.getMeds();
     
     
     //iterator pour l'hitogramme
     
-    for (map<string,vector<string>>::iterator iP=pharma.begin();iP != pharma.end();iP++)
+    for (map<string,vector<string> >::iterator iP=pharma.begin();iP != pharma.end();iP++)
     {
         
         for (vector <string>::iterator iPv = iP->second.begin();iPv != iP->second.end();iPv++)
         {
             
             //Pour chaque effet on compare avec histo pour savoir si il est deja présent
-            map<string,vector<string>>::iterator iF = histo.find(*iPv);
+            map<string,vector<string> >::iterator iF = histo.find(*iPv);
             if(iF == histo.end())
             {
                 //l'effet n'a pas été trouvé il est donc absent de l histo
@@ -98,7 +98,7 @@ void Histogramme::ajoutFichier(Pharmacie med){
 
 /********** Permet de rajouter de nouveau effet manuellement **********/
 void Histogramme::ajouterEffet(string effet){
-    map<string,vector<string>>::iterator it;
+    map<string,vector<string> >::iterator it;
     it =histo.find(effet);
     if( it==histo.end()){
         histo[effet];
@@ -108,8 +108,8 @@ void Histogramme::ajouterEffet(string effet){
 
 void Histogramme::afficherUnEffet (string effet)
 {
-    map<string,vector<string>>::iterator it;
-    for (map<string,vector<string>>::iterator it =histo.begin();
+    map<string,vector<string> >::iterator it;
+    for (map<string,vector<string> >::iterator it =histo.begin();
          it!=histo.end();
          it++)
     {
@@ -128,7 +128,7 @@ void Histogramme::afficherUnEffet (string effet)
 
 /********** Affichage de tout les effets de la base de données *********/
 void Histogramme::afficherEffet(){
-    map<string,vector<string>>::iterator it;
+    map<string,vector<string> >::iterator it;
     for(it=histo.begin(); it!=histo.end();it++){
         cout<<it->first<<endl;
     }
@@ -136,7 +136,7 @@ void Histogramme::afficherEffet(){
 
 /********** Affichage de tout l'histogramme **********/
 void Histogramme::afficherHisto(){
-    map<string,vector<string>>::iterator it;
+    map<string,vector<string> >::iterator it;
     for(it=histo.begin();it!=histo.end();it++){
         cout<<"effet :  "<<it->first<<", medicaments associé :        ";
         for(vector<string>::iterator ip=it->second.begin();ip!=it->second.end();ip++){
@@ -147,7 +147,7 @@ void Histogramme::afficherHisto(){
 }
 /********** Associer un effet a un medicament **********/
 void Histogramme::associerMedicament(string effet,string medoc){
-    map<string,vector<string>>::iterator it;
+    map<string,vector<string> >::iterator it;
     for(it=histo.begin();it!=histo.end();it++){
         //cout<<it->first<<" "<<endl;
         if(it->first==effet){
