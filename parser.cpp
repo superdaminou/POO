@@ -142,9 +142,22 @@ void play(Pharmacie pharma)
     }
     
     
+    /*********************************/
+    /*                               */
+    /*          Debut Switch         */
+    /*                               */
+    /*********************************/
+    
     switch (choix)
     {
+            
+            /*********************************/
+            /*                               */
+            /*          Affichage            */
+            /*                               */
+            /*********************************/
         case 1: {
+            
             afficher();
             if ( read_choice( choix,1,4 ) )
             {
@@ -157,9 +170,18 @@ void play(Pharmacie pharma)
             
                 switch (choix)
                 {
+                        
+                        /******************************************/
+                        /********** Afficher la pharmacie *********/
+                        /******************************************/
                     case 1:
                     {
+                        pharma.afficherMap();
                         
+                        cin.clear();
+                        cin.ignore( numeric_limits<streamsize>::max(), '\n' );
+                        
+
                         afficher();
                         if ( read_choice( choix,1,4 ) )
                         {
@@ -168,6 +190,10 @@ void play(Pharmacie pharma)
                         break;
                     
                     }
+                        
+                        /******************************************/
+                        /********* Afficher l'histogramme *********/
+                        /******************************************/
                     case 2:
                     {
                         histo.afficherHisto();
@@ -182,13 +208,18 @@ void play(Pharmacie pharma)
                         break;
                         
                     }
+                        
+                        /******************************************/
+                        /********** Afficher les effets  **********/
+                        /******************************************/
                     case 3:
                     {
                         
                         histo.afficherEffet();
+                        
                         cin.clear();
                         cin.ignore( numeric_limits<streamsize>::max(), '\n' );
-                        
+                        afficher();
                         if ( read_choice( choix,1,4 ) )
                         {
                             cout << "Vous avez choisi : " << choix << '\n';
@@ -197,6 +228,9 @@ void play(Pharmacie pharma)
                         break;
                     
                     }
+                        /******************************************/
+                        /***************** Sortir *****************/
+                        /******************************************/
                     case 4:
                     {
                         i=false;
@@ -208,6 +242,16 @@ void play(Pharmacie pharma)
             }
             break;
         }
+            
+            
+            
+            
+            /*********************************/
+            /*                               */
+            /*       Faire une recherhce     */
+            /*                               */
+            /*********************************/
+            
         case 2:
         {
             rechercher();
@@ -222,8 +266,9 @@ void play(Pharmacie pharma)
                 {
                     case 1:
                     {
-                     
-                        /******** Recherche par Medicament *******/
+                        /******************************************/
+                        /******** Recherche par Medicament ********/
+                        /******************************************/
                         
                         cout<<"entrez votre medicament"<<endl;
                         cin>>medicament;
@@ -244,8 +289,9 @@ void play(Pharmacie pharma)
                     }
                     case 2:
                     {
-                       
-                        /******** Recherche par effet *******/
+                        /******************************************/
+                        /********** Recherche par effet ***********/
+                        /******************************************/
                         
                         cout<<"entrez votre effet"<<endl;
                         cin>>medicament;
@@ -262,6 +308,10 @@ void play(Pharmacie pharma)
                         break;
                         
                     }
+                        
+                        /******************************************/
+                        /********                          ********/
+                        /******************************************/
                     case 3:
                     {
                         cout << "3";
@@ -273,6 +323,10 @@ void play(Pharmacie pharma)
                         break;
                         
                     }
+                        
+                        /******************************************/
+                        /***************** Sortir *****************/
+                        /******************************************/
                     case 4:
                     {
                         i=false;
@@ -285,17 +339,38 @@ void play(Pharmacie pharma)
             break;
             
         }
+            
+            
+            
+            
+            
+            /*********************************/
+            /*                               */
+            /*      Ajouter medicament       */
+            /*                               */
+            /*********************************/
+            
         case 3:
         {
             cout << "3";
             break;
             
         }
+            
+            
+            
+            
+            
+            /*********************************/
+            /*                               */
+            /*            Sortir             */
+            /*                               */
+            /*********************************/
+            
+            
         case 4:
         {
-            cout << "4";
             break;
-            // ici, ce n'est pas nécessaire, c'est la dernière instruction
         }
     }
     
@@ -331,8 +406,6 @@ int main(int argc, char** argv){
             Pharmacie pharma(inFilename); // crée la pharmacie en faisant le parsing en même temps
             
             //insérez vous méthodes ici
-           
-            //histo.rechercheParMedicaments("Loratadine");
             play(pharma);
             
         }
