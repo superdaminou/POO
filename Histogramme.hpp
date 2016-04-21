@@ -32,13 +32,20 @@ public:
     void ajoutFichier(Pharmacie med);
     ~Histogramme();
     void ajouterEffet(string effet);
+    
     void afficherUnEffet (string effet);
     void afficherHisto();
     void afficherEffet();
+    
     void associerMedicament(string effet, string medoc);
     void rechercheParEffet(string effet);
     void rechercheParMedicaments(string medoc);
     void ajouterMedicament(string medoc,vector<string>listEffet);
+    
+    float calculRappel(string med,vector<string> effet);
+    float calculPrecision(string med,vector<string> effet);
+   
+    void afficheRapPrec();
     
 };
 

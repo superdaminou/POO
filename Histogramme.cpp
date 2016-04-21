@@ -182,7 +182,8 @@ void Histogramme::ajouterMedicament(string medoc, vector<string> listeEffet){
 }
 
 /********* Liste tout les medicaments provoquant un effet **********/
-void Histogramme::rechercheParEffet(string effet){
+void Histogramme::rechercheParEffet(string effet)
+{
     map<string, vector<string> >::iterator iF=histo.find(effet);
     if(iF!=histo.end()){
         cout<<"Les medicaments provoquants des "<<effet<<" sont :";
@@ -198,7 +199,8 @@ void Histogramme::rechercheParEffet(string effet){
 
 
 /********** Rechercher tout les medicaments provoquant les effet qu'un autre **********/
-void Histogramme::rechercheParMedicaments(string medoc){
+void Histogramme::rechercheParMedicaments(string medoc)
+{
     map<string, vector<string> >::iterator it;
     cout<<"les medicaments partageant les meme effets que "<<medoc<<" sont : "<<endl;
     for(it=histo.begin();it!=histo.end();it++){
@@ -219,3 +221,51 @@ void Histogramme::rechercheParMedicaments(string medoc){
     }
     
 }
+
+float calculRappel(string med,vector<string> effet)
+{
+    float res;
+    int taille(effet.size());
+    
+    
+    
+    
+    return res;
+}
+float calculPrecision(string med,vector<string> effet)
+{
+    float res;
+    
+    return res;
+}
+void afficheRapPrec()
+{
+    string med,temp;
+    vector<string> effet;
+    float rap, prec;
+    bool i = true;
+    
+    cout<<"entrez un medicament :";
+    cin >> med;
+    
+    while (i)
+    {
+        cout << endl;
+        cout << "entrez un effet, taper 'fin' pour terminer : ";
+        cin>>temp;
+        if (temp == "fin")
+        {
+            break;
+        }
+        
+        
+        effet.push_back(temp);
+        cin.clear();
+        cin.ignore( numeric_limits<streamsize>::max(), '\n' );
+        
+    }
+    rap = calculRappel(med,effet);
+    prec = calculPrecision(med,effet);
+    
+}
+
