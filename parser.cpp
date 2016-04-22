@@ -318,6 +318,7 @@ void play(Histogramme histo)
                         
                         cin.clear();
                         cin.ignore( numeric_limits<streamsize>::max(), '\n' );
+                        rechercher();
                         if ( read_choice( choix,1,4 ) )
                         {
                             cout << "Vous avez choisi : " << choix << '\n';

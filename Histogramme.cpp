@@ -269,6 +269,7 @@ vector<string> Histogramme::effet_Medicament(string medicament){
             if(*iF==medicament)
             {
                 effet.push_back(it->first);
+                
             }
         }
     }
@@ -284,7 +285,6 @@ float Histogramme::calcul_Rappel(string med,vector<string> effet)
     
     /*Nbr d'effets entrés par l'utilisateur*/
     float entree(effet.size());
-    cout<<"entree: " << entree<<endl;
     
     float nbrSameEffet(0);
     
@@ -301,8 +301,6 @@ float Histogramme::calcul_Rappel(string med,vector<string> effet)
         }
     }
     
-    cout << "nbrSameEffet :"<<nbrSameEffet<<endl;
-    cout<<"le rappel est de : "<<entree/nbrSameEffet<<endl;
     
     return entree/nbrSameEffet;
 }
@@ -314,13 +312,11 @@ float Histogramme::calcul_Precision(string med,vector<string> effet)
     
     /*Nbr d'effets entrés par l'utilisateur*/
     float entree(effet.size());
-    cout<<"entree: " << entree<<endl;
+    
     
     /*On va compter le nombre d'effet d'un medicament*/
     float total(effMed.size());
-    cout<<"total: " << total<<endl;
     
-    cout<< "la precision est de : "<< entree/total <<endl;
     return entree/total;
 }
 
