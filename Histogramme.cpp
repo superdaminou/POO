@@ -254,6 +254,24 @@ void Histogramme::recherche_Par_Medicaments(string medoc)
     }
 }
 
+vector<string> Histogramme::effet_Medicament(string medicament){
+    vector<string> effet;
+    for(map<string, vector<string> >::iterator it=m_histo.begin();it!=m_histo.end();it++)
+    {
+        for(vector<string>::iterator iF=it->second.begin();iF!=it->second.end();iF++){
+            if(*iF==medicament)
+            {
+                effet.push_back(it->first);
+            }
+        }
+        
+        
+    }
+    
+    return effet;
+}
+
+
 float calcul_Rappel(string med,vector<string> effet)
 {
     float res;

@@ -44,8 +44,11 @@ public:
     void recherche_Par_Medicaments(string medoc);
     void ajouter_Medicament(string medoc,vector<string>listEffet);
     
+    vector<string> effet_Medicament(string medicament);
+    
     float calcul_Rappel(string med,vector<string> effet);
     float calcul_Precision(string med,vector<string> effet);
+    
    
     void affiche_Rap_Prec();
     

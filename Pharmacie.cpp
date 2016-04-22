@@ -73,7 +73,7 @@ void Pharmacie::parse_Med(string s){
         if( t >= s.length()){ // pas de vigule trouvée, on en est donc au dernier effet secondaire
             j = s.find(" et ",i);
             if(j>s.length()){
-                
+                size_t l;
                 effects.push_back(s.substr(i,s.length()-2-i));
             }
             else{
