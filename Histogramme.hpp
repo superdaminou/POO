@@ -30,24 +30,24 @@ public:
     //Constructeur et Destructeur
     Histogramme();
     Histogramme(Pharmacie med);
-    void ajoutFichier(Pharmacie med);
+    void ajout_Fichier(Pharmacie med);
     ~Histogramme();
-    void ajouterEffet(string effet);
+    void ajouter_Effet(string effet);
     
-    void afficherUnEffet (string effet);
-    void afficherHisto();
-    void afficherPharma();
-    void afficherEffet();
+    void afficher_Un_Effet (string effet);
+    void afficher_Histo();
+    void afficher_Pharma();
+    void afficher_Effet();
     
-    void associerMedicament(string effet, string medoc);
-    void rechercheParEffet(string effet);
-    void rechercheParMedicaments(string medoc);
-    void ajouterMedicament(string medoc,vector<string>listEffet);
+    void associer_Medicament(string effet, string medoc);
+    void recherche_Par_Effet(string effet);
+    void recherche_Par_Medicaments(string medoc);
+    void ajouter_Medicament(string medoc,vector<string>listEffet);
     
-    float calculRappel(string med,vector<string> effet);
-    float calculPrecision(string med,vector<string> effet);
+    float calcul_Rappel(string med,vector<string> effet);
+    float calcul_Precision(string med,vector<string> effet);
    
-    void afficheRapPrec();
+    void affiche_Rap_Prec();
     
 };
 

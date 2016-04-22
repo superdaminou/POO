@@ -176,7 +176,7 @@ void play(Histogramme histo)
                     case 1:
                     {
                         
-                        histo.afficherPharma();
+                        histo.afficher_Pharma();
                         cin.clear();
                         cin.ignore( numeric_limits<streamsize>::max(), '\n' );
                         
@@ -195,7 +195,7 @@ void play(Histogramme histo)
                         /******************************************/
                     case 2:
                     {
-                        histo.afficherHisto();
+                        histo.afficher_Histo();
                         
                         cin.clear();
                         cin.ignore( numeric_limits<streamsize>::max(), '\n' );
@@ -215,7 +215,7 @@ void play(Histogramme histo)
                     case 3:
                     {
                         
-                        histo.afficherEffet();
+                        histo.afficher_Effet();
                         
                         cin.clear();
                         cin.ignore( numeric_limits<streamsize>::max(), '\n' );
@@ -272,7 +272,7 @@ void play(Histogramme histo)
                         
                         cout<<"entrez votre medicament"<<endl;
                         cin>>medicament;
-                        histo.rechercheParMedicaments(medicament);
+                        histo.recherche_Par_Medicaments(medicament);
                         
                         
                         cin.clear();
@@ -295,7 +295,7 @@ void play(Histogramme histo)
                         
                         cout<<"entrez votre effet"<<endl;
                         cin>>medicament;
-                        histo.rechercheParEffet(medicament);
+                        histo.recherche_Par_Effet(medicament);
                         
                         cin.clear();
                         cin.ignore( numeric_limits<streamsize>::max(), '\n' );
@@ -384,7 +384,7 @@ void play(Histogramme histo)
                         break;
                         
                     case 2:
-                        histo.ajouterMedicament(medicament, effetMedicament);
+                        histo.ajouter_Medicament(medicament, effetMedicament);
                         loop=false;
                         play(histo);
                         break;

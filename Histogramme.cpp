@@ -62,7 +62,7 @@ Histogramme::~Histogramme(){
 
 
 /**********Permet de rajouter une nouvelle pharmacie dans l'histogramme afin**********/
-void Histogramme::ajoutFichier(Pharmacie med){
+void Histogramme::ajout_Fichier(Pharmacie med){
     map<string,vector<string> > pharma = med.getMeds();
     
     
@@ -97,7 +97,7 @@ void Histogramme::ajoutFichier(Pharmacie med){
 
 
 /********** Permet de rajouter de nouveau effet manuellement **********/
-void Histogramme::ajouterEffet(string effet){
+void Histogramme::ajouter_Effet(string effet){
     map<string,vector<string> >::iterator it;
     it =histo.find(effet);
     if( it==histo.end()){
@@ -106,7 +106,7 @@ void Histogramme::ajouterEffet(string effet){
 }
 
 
-void Histogramme::afficherUnEffet (string effet)
+void Histogramme::afficher_Un_Effet (string effet)
 {
     map<string,vector<string> >::iterator it;
     for (map<string,vector<string> >::iterator it =histo.begin();
@@ -127,7 +127,7 @@ void Histogramme::afficherUnEffet (string effet)
 }
 
 /********** Affichage de tout les effets de la base de données *********/
-void Histogramme::afficherEffet(){
+void Histogramme::afficher_Effet(){
     map<string,vector<string> >::iterator it;
     for(it=histo.begin(); it!=histo.end();it++){
         cout<<it->first<<endl;
@@ -135,7 +135,7 @@ void Histogramme::afficherEffet(){
 }
 
 /********** Affichage de toute la Pharma**********/
-void Histogramme::afficherPharma(){
+void Histogramme::afficher_Pharma(){
     map<string,vector<string> >::iterator it;
     for(it=histo.begin();it!=histo.end();it++){
         cout<<"     effet : "<<it->first<<", ";
@@ -152,7 +152,7 @@ void Histogramme::afficherPharma(){
 
 /********** Affichage de l'Histograme **********/
 
-void Histogramme::afficherHisto(){
+void Histogramme::afficher_Histo(){
     map<string,vector<string> >::iterator it;
     cout<<"nb apparition";
     for(int i=0;i<=8;i++){
@@ -174,7 +174,7 @@ void Histogramme::afficherHisto(){
 
 
 /********** Associer un effet a un medicament **********/
-void Histogramme::associerMedicament(string effet,string medoc){
+void Histogramme::associer_Medicament(string effet,string medoc){
     map<string,vector<string> >::iterator it;
     for(it=histo.begin();it!=histo.end();it++){
         //cout<<it->first<<" "<<endl;
@@ -199,14 +199,14 @@ void Histogramme::associerMedicament(string effet,string medoc){
 }
 
 /********** Permet d'ajouter un Medicament et la liste de ses effets a l'histogramme **********/
-void Histogramme::ajouterMedicament(string medoc, vector<string> listeEffet){
+void Histogramme::ajouter_Medicament(string medoc, vector<string> listeEffet){
     for(vector<string>::iterator it=listeEffet.begin();it!=listeEffet.end();it++){
-        this->associerMedicament(*it,medoc);
+        this->associer_Medicament(*it,medoc);
     }
 }
 
 /********* Liste tout les medicaments provoquant un effet **********/
-void Histogramme::rechercheParEffet(string effet)
+void Histogramme::recherche_Par_Effet(string effet)
 {
     map<string, vector<string> >::iterator iF=histo.find(effet);
     if(iF!=histo.end()){
@@ -223,7 +223,7 @@ void Histogramme::rechercheParEffet(string effet)
 
 
 /********** Rechercher tout les medicaments provoquant les effet qu'un autre **********/
-void Histogramme::rechercheParMedicaments(string medoc)
+void Histogramme::recherche_Par_Medicaments(string medoc)
 {
     map<string, vector<string> >::iterator it;
     cout<<"les medicaments partageant les meme effets que "<<medoc<<" sont : "<<endl;
@@ -246,7 +246,7 @@ void Histogramme::rechercheParMedicaments(string medoc)
     
 }
 
-float calculRappel(string med,vector<string> effet)
+float calcul_Rappel(string med,vector<string> effet)
 {
     float res;
     int taille(effet.size());
@@ -256,13 +256,13 @@ float calculRappel(string med,vector<string> effet)
     
     return res;
 }
-float calculPrecision(string med,vector<string> effet)
+float calcul_Precision(string med,vector<string> effet)
 {
     float res;
     
     return res;
 }
-void afficheRapPrec()
+void affiche_Rap_Prec()
 {
     string med,temp;
     vector<string> effet;
@@ -288,8 +288,8 @@ void afficheRapPrec()
         cin.ignore( numeric_limits<streamsize>::max(), '\n' );
         
     }
-    rap = calculRappel(med,effet);
-    prec = calculPrecision(med,effet);
+    rap = calcul_Rappel(med,effet);
+    prec = calcul_Precision(med,effet);
     
 }
 
