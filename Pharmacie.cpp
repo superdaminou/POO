@@ -100,13 +100,11 @@ void Pharmacie::parse_Med(string s){
                 else{
                     effects.push_back(s.substr(j+4,k-j-4-1));
                 }
-                cout<<effects.back()<<endl;
             }
             break;
         }
         else{ // il y a plusieurs effets secondaires à traiter encore
             
-            cout<<s[t-i-1]<<endl;
             if(s[i+t-i-1]!='s'){
                 effects.push_back(s.substr(i, t-i));
             }
