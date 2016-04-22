@@ -25,10 +25,10 @@ public:
 
     
     //Methode
-    void parsePharma(ifstream&); // parse le fichier d'entrée
-    void parseMed(string); // parse un médicament
-    void afficherMap();
-    void creationHistogramme();
+    void parse_Pharma(ifstream&); // parse le fichier d'entrée
+    void parse_Med(string); // parse un médicament
+    void afficher_Map();
+    void creation_Histogramme();
     // rajoutez vos méthodes
 	
 };

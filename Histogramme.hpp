@@ -24,7 +24,7 @@ using namespace std;
 
 class Histogramme{
 protected:
-    map<string, vector<string> > histo;
+    map<string, vector<string> > m_histo;
     
 public:
     //Constructeur et Destructeur

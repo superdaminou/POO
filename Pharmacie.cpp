@@ -19,7 +19,7 @@ Pharmacie::Pharmacie(string s){
     //vérification que le fichier est valide
     ifstream input(s.c_str());
     if(input.good()) {//vérifie que le fichier est valide
-        parsePharma(input);
+        parse_Pharma(input);
     }
     else
         throw runtime_error("file not good");
@@ -50,16 +50,16 @@ map<string, vector<string> > Pharmacie::getMeds()
 ****************
 ****************/
 
-void Pharmacie::parsePharma(ifstream& in){
+void Pharmacie::parse_Pharma(ifstream& in){
     string s;
     while(in.good()){ // tant que le fichier n'est pas vide
         s = '\0';
         getline(in,s,'\n');//récupère la ligne jusqu'à \n
-        parseMed(s);
+        parse_Med(s);
     }
 }
 
-void Pharmacie::parseMed(string s){
+void Pharmacie::parse_Med(string s){
     size_t z = s.find(':');
     size_t t = 0;
     size_t j=0;
@@ -94,7 +94,7 @@ void Pharmacie::parseMed(string s){
 }
 
 
-void Pharmacie::afficherMap(){
+void Pharmacie::afficher_Map(){
     map<string,vector<string> >::iterator p;  //creation d'un iterateur p sur map
     for(p = meds.begin(); p != meds.end(); p++)  //parcour de p
     {
