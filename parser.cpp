@@ -116,7 +116,7 @@ void rechercher()
     cout<< "*                                                                    *"<<endl;
     cout<< "*                   2) Rechercher par effet                          *"<<endl;
     cout<< "*                                                                    *"<<endl;
-    cout<< "*                   3) Afficher les effets                           *"<<endl;
+    cout<< "*                   3) Calcul du Rappel et de la Precision           *"<<endl;
     cout<< "*                                                                    *"<<endl;
     cout<< "*                   4) Sortir                                        *"<<endl;
     cout<< "*                                                                    *"<<endl;
@@ -310,11 +310,14 @@ void play(Histogramme histo)
                     }
                         
                         /******************************************/
-                        /********                          ********/
+                        /******* Calcul Rappel et Precision *******/
                         /******************************************/
                     case 3:
                     {
-                        cout << "3";
+                        histo.affiche_Rap_Prec();
+                        
+                        cin.clear();
+                        cin.ignore( numeric_limits<streamsize>::max(), '\n' );
                         if ( read_choice( choix,1,4 ) )
                         {
                             cout << "Vous avez choisi : " << choix << '\n';
