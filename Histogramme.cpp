@@ -293,7 +293,7 @@ float Histogramme::calcul_Rappel(string med,vector<string> effet)
     {
         for (vector<string>::iterator it_effMed = effMed.begin(); it_effMed != effMed.end(); it_effMed++)
         {
-            if (it_effet == it_effMed)
+            if (*it_effet == *it_effMed)
             {
                 nbrSameEffet++;
             }
@@ -304,7 +304,6 @@ float Histogramme::calcul_Rappel(string med,vector<string> effet)
     cout << "nbrSameEffet :"<<nbrSameEffet<<endl;
     cout<<"le rappel est de : "<<entree/nbrSameEffet<<endl;
     
-    cout<<"division par 0:"<<1.0/0.0<<endl;
     return entree/nbrSameEffet;
 }
 
