@@ -9,10 +9,10 @@
 using namespace std;
 
 /************************************
-*************************************
-**** Constructeur et Destructeur ****
-*************************************
-************************************/
+ *************************************
+ **** Constructeur et Destructeur ****
+ *************************************
+ ************************************/
 
 Pharmacie::Pharmacie(string s){
     
@@ -32,10 +32,10 @@ Pharmacie::~Pharmacie()
 
 
 /***********************
-************************
-**** Getter & Setter ***
-************************
-************************/
+ ************************
+ **** Getter & Setter ***
+ ************************
+ ************************/
 
 map<string, vector<string> > Pharmacie::getMeds()
 {
@@ -45,10 +45,10 @@ map<string, vector<string> > Pharmacie::getMeds()
 
 
 /***************
-****************
-*** Methodes ***
-****************
-****************/
+ ****************
+ *** Methodes ***
+ ****************
+ ****************/
 
 void Pharmacie::parse_Pharma(ifstream& in){
     string s;
@@ -63,6 +63,7 @@ void Pharmacie::parse_Med(string s){
     size_t z = s.find(':');
     size_t t = 0;
     size_t j=0;
+    
     string nam = s.substr(0, z-1); // nom du médicament (de la position 0 dans le string à z-1, vu qu'il y a un espace avant ':')
     vector<string> effects;  // liste d'effets secondaires
     int i = s.find_last_of(':')+2; // position du premier caractère après les ':'
@@ -73,24 +74,51 @@ void Pharmacie::parse_Med(string s){
         if( t >= s.length()){ // pas de vigule trouvée, on en est donc au dernier effet secondaire
             j = s.find(" et ",i);
             if(j>s.length()){
-                
-                effects.push_back(s.substr(i,s.length()-2-i));
+                if(s[i+s.length()-2-i-1]!='s')
+                {
+                    effects.push_back(s.substr(i,s.length()-2-i));
+                }
+                else
+                {
+                    effects.push_back(s.substr(i,s.length()-2-i-1));
+                }
             }
             else{
-                effects.push_back(s.substr(i,j-i));
+                if(s[i+j-i-1]!='s')
+                {
+                    effects.push_back(s.substr(i,j-i));
+                }
+                else{
+                    effects.push_back(s.substr(i,j-i-1));
+                }
+                
                 size_t k=s.find_last_of('.');
-                effects.push_back(s.substr(j+4,k-j-4));
+                
+                if(s[j+4+k-j-4-1]!='s'){
+                    effects.push_back(s.substr(j+4,k-j-4));
+                }
+                else{
+                    effects.push_back(s.substr(j+4,k-j-4-1));
+                }
+                cout<<effects.back()<<endl;
             }
             break;
-		}
-		else{ // il y a plusieurs effets secondaires à traiter encore
-            effects.push_back(s.substr(i, t-i));
-			i = t+2;	// on fait avancer i de la taille de la chaine + l'espace et la virgule
-		}
-	 }
-	
-	meds.insert(pair<string, vector<string> >(nam, effects)); //insertion de la paire représentant le médicament dans la map
-
+        }
+        else{ // il y a plusieurs effets secondaires à traiter encore
+            
+            cout<<s[t-i-1]<<endl;
+            if(s[i+t-i-1]!='s'){
+                effects.push_back(s.substr(i, t-i));
+            }
+            else{
+                effects.push_back(s.substr(i, t-i-1));
+            }
+            i = t+2;	// on fait avancer i de la taille de la chaine + l'espace et la virgule
+        }
+    }
+    
+    meds.insert(pair<string, vector<string> >(nam, effects)); //insertion de la paire représentant le médicament dans la map
+    
 }
 
 
