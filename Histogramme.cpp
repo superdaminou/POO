@@ -272,23 +272,56 @@ vector<string> Histogramme::effet_Medicament(string medicament){
 }
 
 
-float calcul_Rappel(string med,vector<string> effet)
+float Histogramme::calcul_Rappel(string med,vector<string> effet)
 {
-    float res;
-    int taille(effet.size());
+    /*Renvoi les effets d'un medicament*/
+    vector<string> effMed(effet_Medicament(med));
     
+    /*Nbr d'effets entrés par l'utilisateur*/
+    float entree(effet.size());
+    cout<<"entree: " << entree<<endl;
     
+    float nbrSameEffet(0);
     
+    /*comparaison nbr effet entre et effet present dans le med */
+    for (vector<string>::iterator it_effet = effet.begin(); it_effet != effet.end(); it_effet++)
+    {
+        for (vector<string>::iterator it_effMed = effMed.begin(); it_effMed != effMed.end(); it_effMed++)
+        {
+            if (it_effet == it_effMed)
+            {
+                nbrSameEffet++;
+            }
+            
+        }
+    }
     
-    return res;
+    cout << "nbrSameEffet :"<<nbrSameEffet<<endl;
+    cout<<"le rappel est de : "<<entree/nbrSameEffet<<endl;
+    
+    cout<<"division par 0:"<<1.0/0.0<<endl;
+    return entree/nbrSameEffet;
 }
-float calcul_Precision(string med,vector<string> effet)
+
+
+float Histogramme::calcul_Precision(string med,vector<string> effet)
 {
-    float res;
+    vector<string> effMed(effet_Medicament(med)) ;
     
-    return res;
+    /*Nbr d'effets entrés par l'utilisateur*/
+    float entree(effet.size());
+    cout<<"entree: " << entree<<endl;
+    
+    /*On va compter le nombre d'effet d'un medicament*/
+    float total(effMed.size());
+    cout<<"total: " << total<<endl;
+    
+    cout<< "la precision est de : "<< entree/total <<endl;
+    return entree/total;
 }
-void affiche_Rap_Prec()
+
+
+void Histogramme::affiche_Rap_Prec()
 {
     string med,temp;
     vector<string> effet;
@@ -314,8 +347,19 @@ void affiche_Rap_Prec()
         cin.ignore( numeric_limits<streamsize>::max(), '\n' );
         
     }
+    
     rap = calcul_Rappel(med,effet);
     prec = calcul_Precision(med,effet);
+    
+    
+    /*Affichage*/
+    
+    
+    cout<<endl;
+    cout<< "    Pour le medicament : " << med <<endl;
+    cout<< "Le Rappel est de : "<< rap <<endl;
+    cout<< "La Precision est de : "<< prec<<endl;
+    cout<<endl;
     
 }
 
