@@ -271,7 +271,6 @@ vector<string> Histogramme::effet_Medicament(string medicament){
                 effet.push_back(it->first);
             }
         }
-        cout<<endl;
     }
     
     return effet;
