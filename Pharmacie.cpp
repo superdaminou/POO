@@ -63,7 +63,6 @@ void Pharmacie::parse_Med(string s){
     size_t z = s.find(':');
     size_t t = 0;
     size_t j=0;
-
     string nam = s.substr(0, z-1); // nom du médicament (de la position 0 dans le string à z-1, vu qu'il y a un espace avant ':')
     vector<string> effects;  // liste d'effets secondaires
     int i = s.find_last_of(':')+2; // position du premier caractère après les ':'
@@ -74,39 +73,18 @@ void Pharmacie::parse_Med(string s){
         if( t >= s.length()){ // pas de vigule trouvée, on en est donc au dernier effet secondaire
             j = s.find(" et ",i);
             if(j>s.length()){
-                if(s[i+s.length()-2-i-1]!='s')
-                {
+                
                 effects.push_back(s.substr(i,s.length()-2-i));
-                }
-                else
-                {
-                    effects.push_back(s.substr(i,s.length()-2-i-1));
-                }
             }
             else{
-                if(s[i+j-i-1]!='s')
-                {
                 effects.push_back(s.substr(i,j-i));
-                }
-                else{
-                    effects.push_back(s.substr(i,j-i-1));
-                }
-                
                 size_t k=s.find_last_of('.');
-                
-                if(s[j+4+k-j-4-1]!='s'){
-                    effects.push_back(s.substr(j+4,k-j-4));
-                }
-                else{
-                    effects.push_back(s.substr(j+4,k-j-4-1));
-                }
+                effects.push_back(s.substr(j+4,k-j-4));
             }
             break;
 		}
 		else{ // il y a plusieurs effets secondaires à traiter encore
-            
-            //cout<<s[t-i-1]<<endl;
-            //effects.push_back(s.substr(i, t-i));
+            effects.push_back(s.substr(i, t-i));
 			i = t+2;	// on fait avancer i de la taille de la chaine + l'espace et la virgule
 		}
 	 }

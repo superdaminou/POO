@@ -254,18 +254,24 @@ void Histogramme::recherche_Par_Medicaments(string medoc)
     }
 }
 
+
+/****** Sortir les effets d'un medicament********/
+
+
 vector<string> Histogramme::effet_Medicament(string medicament){
     vector<string> effet;
-    for(map<string, vector<string> >::iterator it=m_histo.begin();it!=m_histo.end();it++)
+    
+    map<string, vector<string> >::iterator it;
+    for( it=m_histo.begin();it!=m_histo.end();it++)
     {
-        for(vector<string>::iterator iF=it->second.begin();iF!=it->second.end();iF++){
+        vector<string>::iterator iF;
+        for(iF=it->second.begin();iF!=it->second.end();iF++){
             if(*iF==medicament)
             {
                 effet.push_back(it->first);
             }
         }
-        
-        
+        cout<<endl;
     }
     
     return effet;
