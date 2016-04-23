@@ -30,8 +30,11 @@ public:
     //Constructeur et Destructeur
     Histogramme();
     Histogramme(Pharmacie med);
-    void ajout_Fichier(Pharmacie med);
     ~Histogramme();
+    
+    
+    //Methodes
+    void ajout_Fichier(Pharmacie med);
     void ajouter_Effet(string effet);
     
     void afficher_Un_Effet (string effet);

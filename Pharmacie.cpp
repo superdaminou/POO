@@ -75,7 +75,7 @@ void Pharmacie::parse_Med(string s){
             j = s.find(" et ",i);// on verifie si il y a un et
             if(j>s.length())
             {
-                if(s[i+s.length()-2-i-1]!='s') //gestion du pluriel 
+                if(s[i+s.length()-2-i-1]!='s') //gestion du pluriel     
                 {
                     effects.push_back(s.substr(i,s.length()-2-i));
                 }

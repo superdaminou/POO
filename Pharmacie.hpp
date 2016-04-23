@@ -13,7 +13,7 @@ using namespace std;
 
 class Pharmacie{
 private:
-    map<string, vector<string> > meds; // A adapter à l'architecture choisie
+    map<string, vector<string> > meds;  
 	
 public:
     //Constructeur & Destructeur
@@ -29,8 +29,6 @@ public:
     void parse_Med(string); // parse un médicament
     void afficher_Map();
     void creation_Histogramme();
-    // rajoutez vos méthodes
-	
 };
 
 #endif
