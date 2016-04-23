@@ -99,26 +99,27 @@ void Histogramme::ajout_Fichier(Pharmacie med){
 void Histogramme::ajouter_Effet(string effet){
     
     map<string,vector<string> >::iterator it=m_histo.find(effet);
-    if( it==m_histo.end()){
+    if( it==m_histo.end())//si l'iterateur n'est pas superieur a la taille de la map alors c'est que l'effet est repertorié
+    {
         m_histo[effet];
     }
 }
 
 
 
-/********* Permet d'afficher un Effet **********/
+/********* Permet d'afficher un tout les medicament ayant on effet **********/
 void Histogramme::afficher_Un_Effet (string effet)
 {
     for (map<string,vector<string> >::iterator it =m_histo.begin();
          it!=m_histo.end();
          it++)
     {
-        if(it->first == effet)
+        if(it->first == effet)//On a trouver l'effet
         {
             cout<<effet<< " medicament : ";
-            for(vector<string>::iterator ip=it->second.begin();ip!=it->second.end();ip++)
+            for(vector<string>::iterator iV=it->second.begin();iV!=it->second.end();iV++)       //on parcour le vecteur contenant tout les medicaments
             {
-                cout<<*ip<<", ";
+                cout<<*iV<<", ";
             }
         }
         
@@ -144,9 +145,9 @@ void Histogramme::afficher_Pharma(){
             cout<<".";
         }
         cout<<"medicaments associé : ";
-        for(vector<string>::iterator ip=it->second.begin();ip!=it->second.end();ip++)
+        for(vector<string>::iterator iV=it->second.begin();iV!=it->second.end();iV++)
         {
-            cout<<*ip<<" ";
+            cout<<*iV<<" ";
         }
         cout<<endl;
     }
@@ -166,7 +167,7 @@ void Histogramme::afficher_Histo(){
     {
         for(int i=0;i<=it->second.size();i++)
         {
-            cout<<"◙";
+            cout<<"◙";                  //represente une apparition dans un medicament
         }
         for(int i=0;i<=20-it->second.size();i++)
         {
@@ -183,11 +184,10 @@ void Histogramme::afficher_Histo(){
 void Histogramme::associer_Medicament(string effet,string medoc){
     for(map<string,vector<string> >::iterator it=m_histo.begin();it!=m_histo.end();it++)
     {
-        if(it->first==effet){
-            cout<<"effet trouver"<<endl;
-            for(vector<string>::iterator ip=it->second.begin();ip!=it->second.end();ip++){
-                cout<<*ip<<" ";
-                if(*ip==medoc){
+        if(it->first==effet){   // on verifie si l'effet est deja enregistré
+            for(vector<string>::iterator iV=it->second.begin();iV!=it->second.end();iV++){ //on verifie si le medicament est deja enregisté
+                cout<<*iV<<" ";
+                if(*iV==medoc){
                     cout<<" effet et medicaments deja associé"<<endl;
                     return;
                 }
@@ -235,16 +235,16 @@ void Histogramme::recherche_Par_Medicaments(string medoc)
 {
     cout<<"les medicaments partageant les meme effets que "<<medoc<<" sont : "<<endl;
     for(map<string, vector<string> >::iterator it=m_histo.begin();it!=m_histo.end();it++){
-        for(vector <string>::iterator iP=it->second.begin();iP!=it->second.end();iP++)
+        for(vector <string>::iterator iV=it->second.begin();iV!=it->second.end();iV++)// on recherche le medicament dans tout les effet
         {
-            if(*iP==medoc && it->second.size()>1)
+            if(*iV==medoc && it->second.size()>1) // si on trouve le medicament dans un effet et que ce n'est pas le seul alors on affiche les autre medicaments en precisiant l'effet
             {
                 cout<<"pour "<<it->first<<" : ";
-                for(iP=it->second.begin();iP!=it->second.end();iP++)
+                for(iV=it->second.begin();iV!=it->second.end();iV++)
                 {
-                    if(*iP!=medoc)
+                    if(*iV!=medoc)
                     {
-                        cout<<*iP<<" ";
+                        cout<<*iV<<" ";
                     }
                 }
                 cout<<endl;
@@ -264,9 +264,9 @@ vector<string> Histogramme::effet_Medicament(string medicament){
     map<string, vector<string> >::iterator it;
     for( it=m_histo.begin();it!=m_histo.end();it++)
     {
-        vector<string>::iterator iF;
-        for(iF=it->second.begin();iF!=it->second.end();iF++){
-            if(*iF==medicament)
+        vector<string>::iterator iP;
+        for(iP=it->second.begin();iP!=it->second.end();iP++){
+            if(*iP==medicament)
             {
                 effet.push_back(it->first);
                 
@@ -277,6 +277,8 @@ vector<string> Histogramme::effet_Medicament(string medicament){
     return effet;
 }
 
+
+/****** Fonction de calcul du rappel *******/
 
 float Histogramme::calcul_Rappel(string med,vector<string> effet)
 {
@@ -306,6 +308,8 @@ float Histogramme::calcul_Rappel(string med,vector<string> effet)
 }
 
 
+/******** Fonction de calcul de la precision  *********/
+
 float Histogramme::calcul_Precision(string med,vector<string> effet)
 {
     vector<string> effMed(effet_Medicament(med)) ;
@@ -321,6 +325,8 @@ float Histogramme::calcul_Precision(string med,vector<string> effet)
 }
 
 
+/********* Affichage du rappel et de la precision *******/
+
 void Histogramme::affiche_Rap_Prec()
 {
     string med,temp;
@@ -330,12 +336,15 @@ void Histogramme::affiche_Rap_Prec()
     
     cout<<"entrez un medicament :";
     cin >> med;
+    transform(med.begin(), med.begin()+1,med.begin(),::toupper );
+    transform(med.begin()+1, med.end(),med.begin()+1,::tolower );
     
     while (i)
     {
         cout << endl;
         cout << "entrez un effet, taper 'fin' pour terminer : ";
         cin>>temp;
+        transform(temp.begin(), temp.end(),temp.begin(),::tolower );
         if (temp == "fin")
         {
             break;
@@ -356,7 +365,7 @@ void Histogramme::affiche_Rap_Prec()
     
     
     cout<<endl;
-    cout<< "    Pour le medicament : " << med <<endl;
+    cout<< "Pour le medicament : " << med <<endl;
     cout<< "Le Rappel est de : "<< rap <<endl;
     cout<< "La Precision est de : "<< prec<<endl;
     cout<<endl;

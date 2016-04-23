@@ -72,9 +72,10 @@ void Pharmacie::parse_Med(string s){
     while(i < s.length()){ // boucle jusqu'à la fin de la ligne
         t = s.find(',', i);
         if( t >= s.length()){ // pas de vigule trouvée, on en est donc au dernier effet secondaire
-            j = s.find(" et ",i);
-            if(j>s.length()){
-                if(s[i+s.length()-2-i-1]!='s')
+            j = s.find(" et ",i);// on verifie si il y a un et
+            if(j>s.length())
+            {
+                if(s[i+s.length()-2-i-1]!='s') //gestion du pluriel 
                 {
                     effects.push_back(s.substr(i,s.length()-2-i));
                 }
@@ -83,7 +84,8 @@ void Pharmacie::parse_Med(string s){
                     effects.push_back(s.substr(i,s.length()-2-i-1));
                 }
             }
-            else{
+            else
+            {
                 if(s[i+j-i-1]!='s')
                 {
                     effects.push_back(s.substr(i,j-i));
@@ -118,7 +120,6 @@ void Pharmacie::parse_Med(string s){
     meds.insert(pair<string, vector<string> >(nam, effects)); //insertion de la paire représentant le médicament dans la map
     
 }
-
 
 void Pharmacie::afficher_Map(){
     map<string,vector<string> >::iterator p;  //creation d'un iterateur p sur map

@@ -34,6 +34,10 @@ void usage(char* progname) {
 }
 
 
+
+
+/********Fonction qui permet de verifier l'entrée utilisateur********/
+
 bool read_choice( int & N,int bas, int haut )
 {
     cout << "Entrez un chiffre entre "<<bas<<" et "<<haut<<" : " ;
@@ -125,11 +129,11 @@ void rechercher()
     
 }
 
-
+/*****Fonction qui vas faire tourner le programme******/
 
 void play(Histogramme histo)
 {
-    bool i = true;
+    bool boucle = true;
     int choix;
     string medicament;
     
@@ -162,7 +166,7 @@ void play(Histogramme histo)
             {
                 cout << "Vous avez choisi : " << choix << '\n';
             }
-            while (i)
+            while (boucle)
             {
 
             
@@ -233,7 +237,7 @@ void play(Histogramme histo)
                         /******************************************/
                     case 4:
                     {
-                        i=false;
+                        boucle=false;
                         play(histo);
                         break;
                     
@@ -259,7 +263,7 @@ void play(Histogramme histo)
             {
                 cout << "Vous avez choisi : " << choix << '\n';
             }
-            while (i)
+            while (boucle)
             {
                 
                 switch (choix)
@@ -272,6 +276,9 @@ void play(Histogramme histo)
                         
                         cout<<"entrez votre medicament"<<endl;
                         cin>>medicament;
+                        
+                        transform(medicament.begin(), medicament.begin()+1,medicament.begin(),::toupper );
+                        transform(medicament.begin()+1, medicament.end(),medicament.begin()+1,::tolower );
                         histo.recherche_Par_Medicaments(medicament);
                         
                         
@@ -292,10 +299,13 @@ void play(Histogramme histo)
                         /******************************************/
                         /********** Recherche par effet ***********/
                         /******************************************/
+                        string effet;
                         
                         cout<<"entrez votre effet"<<endl;
-                        cin>>medicament;
-                        histo.recherche_Par_Effet(medicament);
+                        cin>>effet;
+                        
+                        transform(effet.begin(), effet.end(),effet.begin(),::tolower );
+                        histo.recherche_Par_Effet(effet);
                         
                         cin.clear();
                         cin.ignore( numeric_limits<streamsize>::max(), '\n' );
@@ -333,7 +343,7 @@ void play(Histogramme histo)
                         /******************************************/
                     case 4:
                     {
-                        i=false;
+                        boucle=false;
                         play(histo);
                         break;
                         
@@ -365,10 +375,14 @@ void play(Histogramme histo)
             cout << "tapez le nom de votre medicament :"<<endl;
             cin>>medicament;
             
+            transform(medicament.begin(), medicament.begin()+1,medicament.begin(),::toupper );
+            transform(medicament.begin()+1, medicament.end(),medicament.begin()+1,::tolower );
+            
             cin.clear();
             cin.ignore( numeric_limits<streamsize>::max(), '\n' );
             cout<<"ajouter un effet :"<<endl;
             getline(cin,effet);
+            transform(effet.begin(), effet.end(),effet.begin(),::tolower );
             effetMedicament.push_back(effet);
             
             while(loop==true){
@@ -382,8 +396,8 @@ void play(Histogramme histo)
                         cin.clear();
                         cin.ignore( numeric_limits<streamsize>::max(), '\n' );
                         cout<<"rentrez l'effet a ajouter:"<<endl;
-                        
                         getline(cin,effet);
+                        transform(effet.begin(), effet.end(),effet.begin(),::tolower );
                         effetMedicament.push_back(effet);
                         break;
                         
@@ -469,5 +483,4 @@ int main(int argc, char** argv){
         return EXIT_SUCCESS;
         
     }
-    cout<<"dehors la boucle"<<endl;
 }
