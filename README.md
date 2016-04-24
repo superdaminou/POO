@@ -1,5 +1,15 @@
 # Poo
-Executer le programme.
+pour compiler : make
+pour executer : ./exec
+
+Architecture: 
+-Pharmacie.hpp
+-Pharmacie.cpp
+-Histogramme.hpp
+-Histogramme.cpp
+-parser.cpp
+
+
 Choissisez votre action 1/Afficher     2/Rechercher   3/Ajouter un Medicament    4/Quitter
 1/Choissisez l'affichage :
 
@@ -29,3 +39,7 @@ Choissisez votre action 1/Afficher     2/Rechercher   3/Ajouter un Medicament   
 
 
 4/Fin du programme
+
+
+
+/!\Le fichier txt doit etre dans le dossier de l'executable.
