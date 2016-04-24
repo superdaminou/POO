@@ -45,6 +45,7 @@ public:
     void associer_Medicament(string effet, string medoc);
     void recherche_Par_Effet(string effet);
     void recherche_Par_Medicaments(string medoc);
+    void recherche_Par_Medicaments(string medoc, int nbEffetPartager);
     void ajouter_Medicament(string medoc,vector<string>listEffet);
     
     vector<string> effet_Medicament(string medicament);

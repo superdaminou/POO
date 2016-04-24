@@ -277,9 +277,33 @@ void play(Histogramme histo)
                         cout<<"entrez votre medicament"<<endl;
                         cin>>medicament;
                         
+                        
                         transform(medicament.begin(), medicament.begin()+1,medicament.begin(),::toupper );
                         transform(medicament.begin()+1, medicament.end(),medicament.begin()+1,::tolower );
-                        histo.recherche_Par_Medicaments(medicament);
+                        cout<<"voulez vous un nombre d'effet en commun ? 1:Oui 2:Non"<<endl;
+                        //cin>>choix;
+                        if ( read_choice( choix,1,2 ) )
+                        {
+                            cout << "Vous avez choisi : " << choix << '\n';
+                        }
+                        
+                        
+                        if(choix==1)
+                        {
+                            cin.clear();
+                            cin.ignore( numeric_limits<streamsize>::max(), '\n' );
+                            int nbEffet;
+                            cout<<"nombre d'effet en commun:";
+                            cin>>nbEffet;
+                            
+                            histo.recherche_Par_Medicaments(medicament,nbEffet);
+                            
+                        }
+                        else{
+                            histo.recherche_Par_Medicaments(medicament);
+                        }
+                        
+                        
                         
                         
                         cin.clear();
@@ -299,7 +323,9 @@ void play(Histogramme histo)
                         /******************************************/
                         /********** Recherche par effet ***********/
                         /******************************************/
+                        histo.afficher_Effet();
                         string effet;
+                        cout<<endl;
                         
                         cout<<"entrez votre effet"<<endl;
                         cin>>effet;

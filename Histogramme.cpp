@@ -230,7 +230,7 @@ void Histogramme::recherche_Par_Effet(string effet)
 }
 
 
-/********** Rechercher tout les medicaments provoquant les effet qu'un autre **********/
+/********** Rechercher tout les medicaments provoquant les meme effet qu'un autre **********/
 void Histogramme::recherche_Par_Medicaments(string medoc)
 {
     cout<<"les medicaments partageant les meme effets que "<<medoc<<" sont : "<<endl;
@@ -254,6 +254,45 @@ void Histogramme::recherche_Par_Medicaments(string medoc)
     }
 }
 
+void Histogramme::recherche_Par_Medicaments(string medoc, int nbEffetPartager)
+{
+    map<string,vector<string> >listeMedicament;
+    
+    cout<<"les medicaments ayant "<<nbEffetPartager<<" effets en commun avec "<<medoc<<" sont : "<<endl;
+    for(map<string, vector<string> >::iterator it=m_histo.begin();it!=m_histo.end();it++)
+    {
+        for(vector <string>::iterator iV=it->second.begin();iV!=it->second.end();iV++)// on recherche le medicament dans tout les effet
+        {
+            if(*iV==medoc && it->second.size()>1) // si on trouve le medicament dans un effet et que ce n'est pas le seul alors on affiche les autre medicaments en precisiant l'effet
+            {
+                for(iV=it->second.begin();iV!=it->second.end();iV++)
+                {
+                    if(*iV!=medoc)
+                    {
+                        listeMedicament[*iV].push_back(it->first);
+                    }
+                }
+                break;
+            }
+        }
+    }
+
+    map<string,vector<string> >::iterator iM;
+    for(iM=listeMedicament.begin();iM!=listeMedicament.end();iM++)
+    {
+        if(iM->second.size()==nbEffetPartager)
+        {
+            cout<<"Medicament :"<<iM->first<<", effet : ";
+            vector<string>::iterator iV;
+            for(iV=iM->second.begin();iV!=iM->second.end();iV++){
+                cout<<*iV<<" ";
+            }
+            cout<<endl;
+        }
+        
+    }
+    //cout<<endl;
+}
 
 /****** Sortir les effets d'un medicament********/
 
