@@ -1,4 +1,4 @@
-# Poo
+#Poo
 pour compiler : make
 pour executer : ./exec
 
